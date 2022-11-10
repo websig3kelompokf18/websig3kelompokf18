@@ -1,0 +1,75 @@
+<html>
+    <head>
+	<link rel="stylesheet" href="leaflet/leaflet.css"/>
+	<script src="leaflet/leaflet.js"></script>
+	
+	<link rel="stylesheet" href="leaflet/leaflet.groupedlayercontrol.css"/> 
+	<script src="leaflet/leaflet.groupedlayercontrol.js"></script>
+	
+	<link rel="stylesheet" href="leaflet/Control.Geocoder.css"/> 
+	<script src="leaflet/Control.Geocoder.js"></script>
+	
+	<link rel="stylesheet" href="leaflet/Leaflet.LinearMeasurement.css"/> 
+	<script src="leaflet/Leaflet.LinearMeasurement.js"></script>
+	
+	<link rel="stylesheet" href="leaflet/leaflet-compass.css"/> 
+	<script src="leaflet/leaflet-compass.js"></script>
+	
+	<link rel="stylesheet" href="leaflet/minimap.css"/> 
+	<script src="leaflet/minimap.js"></script>
+	
+
+    </head>
+   <body>
+<!-- peta akan ditampilkan disini -->
+         <div style="height:600px" id="mapid"></div>
+    </body>
+	
+	<script src="uts acara 3.js"></script>
+	<script>
+   var mymap = L.map('mapid').setView([-0.4867271,117.1410389], 11);
+   var GoogleMaps = new L.TileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { 
+     opacity: 1.0, attribution: 'F18'
+	}).addTo(mymap);
+	var GoogleSatelliteHybrid = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { 
+     maxZoom: 22, 
+     attribution: 'Ketrampilan Berkehidupan dan WEBSIG UMS' 
+	});
+
+	var baseLayers = {
+     'Google Satellite Hybrid': GoogleSatelliteHybrid,
+     'Google Maps': GoogleMaps,
+	}; 
+
+	L.control.groupedLayers(baseLayers).addTo(mymap);
+	var polyg2 = L.geoJson(polygons.features).addTo(mymap);
+	
+	
+	var marker = L.marker([-0.4993605146215926, 117.13663119128532]).addTo(mymap);
+	marker.bindPopup("<b>Informasi</b><br>Rumah Sakit Dirgahayu");
+	
+	var marker = L.marker([-0.501262445392636, 117.14292971244832]).addTo(mymap);
+	marker.bindPopup("<b>Informasi</b><br>Rumah Sakit Tk.IV Samarinda");
+	
+	var marker = L.marker([-0.49594429813729496, 117.14714806293496]).addTo(mymap);
+	marker.bindPopup("<b>Informasi</b><br>Rumah Sakit Bhakti Nugraha");
+	
+	L.Control.geocoder().addTo(mymap);
+	
+	mymap.addControl(new L.Control.LinearMeasurement({
+        unitSystem: 'metric',
+        color: '#FF0080',
+        type: 'line'
+    }));
+	
+	L.control.scale( {position: "topleft", maxWidth: 200} ).addTo(mymap);
+	
+	mymap.addControl( new L.Control.Compass( {position: 'topright',angleOffset: 2, showDigit: true} ) );
+	leaflet/compass-icon-disabled.js
+	
+	var tileLayer = new L.TileLayer(tileLayerUrl, 'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { minZoom: 0, maxZoom: 13 });
+	var miniMap = new L.Control.MiniMap({position:'bottomright'}).addTo(mymap); 
+	
+	</script>
+
+</html>
